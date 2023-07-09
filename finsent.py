@@ -83,6 +83,12 @@ class finsent:
             #main = main.append(y, ignore_index=True)
             main = pd.concat([main, pd.DataFrame(y)], ignore_index=True)
             #print (pd.DataFrame(y))
+        
+      #  global file_name
+      #  file_name = '%s_%s.json' % (prefix, str(today))
+        
+        main.to_csv('output.csv')
+
         end = time.time()
         print("Date:", today)
         print("Stocks analyzed: ", len(tickers))

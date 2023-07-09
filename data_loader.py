@@ -18,7 +18,7 @@ from scipy.stats import linregress
 from datetime import datetime, timedelta
 from feature_generator import TAEngine
 import warnings
-from binance.client import Client
+#from binance.client import Client
 
 warnings.filterwarnings("ignore")
 

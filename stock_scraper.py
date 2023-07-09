@@ -11,7 +11,7 @@ class StockScrape:
     def scraper(self):
         self.df = pd.read_csv('https://pkgstore.datahub.io/core/nyse-other-listings/nyse-listed_csv/data/3c88fab8ec158c3cd55145243fe5fcdf/nyse-listed_csv.csv')
         self.df1 = self.df.iloc[:, 0]
-        self.df1.to_csv('C:/Users/sachi/surpriver-master/stocks/stocks.txt',index=False,header=None)
+        self.df1.to_csv('C:/Users/sanni/Anamoly_SentimentAnalysis/stocks/stocks.txt',index=False,header=None)
         print("Stocks downloaded at ", time.time())
 
 

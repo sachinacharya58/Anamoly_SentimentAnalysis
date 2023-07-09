@@ -360,11 +360,11 @@ supriver = Surpriver()
 #supriver.load_stocks_from_file()
 
 # Generate predictions
-#supriver.find_anomalies()
+supriver.find_anomalies()
 
   
 # Opening JSON file
-f = open('results_2023-07-09.json')
+f = open(file_name)
   
 # returns JSON object as 
 # a dictionary
