@@ -17,7 +17,8 @@ import matplotlib.pyplot as plt
 from sklearn.ensemble import IsolationForest
 from data_loader import DataEngine
 import warnings
-
+from finsent import finsent
+from stock_scraper import StockScrape
 warnings.filterwarnings("ignore")
 
 # Styling for plots
@@ -280,6 +281,7 @@ class Surpriver:
 		if self.IS_TEST != 0:
 			prefix = "results_future"
 
+		global file_name
 		file_name = '%s_%s.json' % (prefix, str(today))
 
 		#Print results to Result File
@@ -348,10 +350,42 @@ class Surpriver:
 # Check arguments
 argumentChecker = ArgChecker()
 
+#get latest stocks list
+stockscrapeinstance = StockScrape()
+stockscrapeinstance.scraper()
+
 # Create surpriver instance
 supriver = Surpriver()
 
 #supriver.load_stocks_from_file()
 
 # Generate predictions
-supriver.find_anomalies()
+#supriver.find_anomalies()
+
+  
+# Opening JSON file
+f = open('results_2023-07-09.json')
+  
+# returns JSON object as 
+# a dictionary
+data = json.load(f)
+data1 = data[1]['Symbol']
+#print (data1)
+#print (data1['Symbol'])
+# Iterating through the json
+# list
+tickers = []
+for i in data:
+   tickers.append(i['Symbol'])
+  
+
+print (tickers)
+
+#We define a list of tickers:
+#tickers = ['TUP','TRUP','KODK','BFAM','BKD','AEG','UIS','MOH','ECC','UGP','RES','OPK','BCS','RS','TFX','SOL','MCO','CYH']
+#We define a list of tickers:
+#tickers = ['TUP']
+
+#And call the method:
+sentiment_companies = finsent.get_all_stocks(tickers)
+print (sentiment_companies)

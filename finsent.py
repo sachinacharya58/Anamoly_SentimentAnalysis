@@ -81,7 +81,7 @@ class finsent:
             y = x.sentiment()
             #print (y)
             #main = main.append(y, ignore_index=True)
-            main = pd.concat([main, pd.DataFrame(y)], ignore_index=False)
+            main = pd.concat([main, pd.DataFrame(y)], ignore_index=True)
             #print (pd.DataFrame(y))
         end = time.time()
         print("Date:", today)
