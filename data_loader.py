@@ -248,7 +248,13 @@ class DataEngine:
 		"""
 		length_dictionary = collections.Counter([len(feature) for feature in features])
 		length_dictionary = list(length_dictionary.keys())
+
+		if not length_dictionary:
+			print("No Valid data found")
+			return [], [], [], []
+
 		most_common_length = length_dictionary[0]
+		print(most_common_length)
 
 		filtered_features, filtered_historical_price, filtered_future_prices, filtered_symbols = [], [], [], []
 		for i in range(0, len(features)):
@@ -257,9 +263,8 @@ class DataEngine:
 				filtered_symbols.append(symbol_names[i])
 				filtered_historical_price.append(historical_price_info[i])
 				filtered_future_prices.append(future_price_info[i])
-
 		return filtered_features, filtered_historical_price, filtered_future_prices, filtered_symbols
-	
+		
 # Create surpriver instance
 #supriver = DataEngine()
 startdate="2000-01-01"

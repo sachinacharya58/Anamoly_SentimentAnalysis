@@ -352,7 +352,7 @@ argumentChecker = ArgChecker()
 
 #get latest stocks list
 stockscrapeinstance = StockScrape()
-stockscrapeinstance.scraper()
+stockscrapeinstance.scraper("stocks.txt")
 
 # Create surpriver instance
 supriver = Surpriver()
