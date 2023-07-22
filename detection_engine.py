@@ -212,6 +212,8 @@ class Surpriver:
 		for item in predictions_with_output_data[:self.TOP_PREDICTIONS_TO_PRINT]:
 			# Get some stats to print
 			prediction, symbol, historical_price, future_price = item
+			stock_price=historical_price['Open']
+
 
 			# Check if future data is present or not
 			if self.IS_TEST == 1 and len(future_price) < 5:
@@ -239,7 +241,8 @@ class Surpriver:
 					'Average Volume 5d' : average_vol_last_five_days,
 					'Average Volume 20d' : average_vol_last_twenty_days,
 					'Volatility 5bars' : volatility_vol_last_five_days,
-					'Volatility 20bars' : volatility_vol_last_twenty_days
+					'Volatility 20bars' : volatility_vol_last_twenty_days,
+					'Stock price'	: stock_price
 				})
 
 			else:
@@ -261,7 +264,8 @@ class Surpriver:
 					'Average Volume 20d' : average_vol_last_twenty_days,
 					'Volatility 5bars' : volatility_vol_last_five_days,
 					'Volatility 20bars' : volatility_vol_last_twenty_days,
-					'Future Absolute Sum Price Changes' : future_abs_sum_percentage_change
+					'Future Absolute Sum Price Changes' : future_abs_sum_percentage_change,
+					'Stock price'	: stock_price
 				})
 
 		if self.OUTPUT_FORMAT == "JSON":
@@ -378,6 +382,10 @@ tickers = []
 for i in data:
    tickers.append(i['Symbol'])
   
+anamoly_score = []
+for i in data:
+   anamoly_score.append(i['Anomaly Score'])
+  
 
 print (tickers)
 
@@ -389,3 +397,8 @@ print (tickers)
 #And call the method:
 sentiment_companies = finsent.get_all_stocks(tickers)
 print (sentiment_companies)
+
+anamoly_and_sentiment = sentiment_companies
+anamoly_and_sentiment['Anamoly Score'] = anamoly_score
+#print (anamoly_and_sentiment)
+anamoly_and_sentiment.to_csv('output.csv')
