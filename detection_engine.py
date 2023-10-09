@@ -213,6 +213,8 @@ class Surpriver:
 			# Get some stats to print
 			prediction, symbol, historical_price, future_price = item
 			stock_price=historical_price['Open']
+			stock_price=stock_price.iloc[-1]
+			#print (stock_price, "	",symbol)
 
 
 			# Check if future data is present or not
@@ -256,7 +258,7 @@ class Surpriver:
 																	volatility_vol_last_five_days, volatility_vol_last_twenty_days,
 																	future_abs_sum_percentage_change))
 				results.append({
-					'latest_date' : latest_date,
+					'latest_date' : dt.datetime.today().strftime('%d-%m-%Y'),
 					'Symbol' : symbol,
 					'Anomaly Score' : prediction,
 					'Today Volume' : today_volume,
@@ -386,8 +388,15 @@ anamoly_score = []
 for i in data:
    anamoly_score.append(i['Anomaly Score'])
   
+stock_price = []
+for i in data:
+   stock_price.append(i['Stock price'])
 
-print (tickers)
+purchase_date = []
+for i in data:
+   purchase_date.append(i['latest_date'])
+
+#print (tickers)
 
 #We define a list of tickers:
 #tickers = ['TUP','TRUP','KODK','BFAM','BKD','AEG','UIS','MOH','ECC','UGP','RES','OPK','BCS','RS','TFX','SOL','MCO','CYH']
@@ -396,9 +405,13 @@ print (tickers)
 
 #And call the method:
 sentiment_companies = finsent.get_all_stocks(tickers)
-print (sentiment_companies)
+#print (sentiment_companies)
 
 anamoly_and_sentiment = sentiment_companies
 anamoly_and_sentiment['Anamoly Score'] = anamoly_score
+anamoly_and_sentiment['Purchase Price'] = stock_price
+anamoly_and_sentiment.insert(0,"Purchase Date",purchase_date)
+
+
 #print (anamoly_and_sentiment)
 anamoly_and_sentiment.to_csv('output.csv')

@@ -97,13 +97,13 @@ class finsent:
     
 
 #We define a list of tickers:
-#tickers = ['TUP','TRUP','KODK','BFAM','BKD','AEG','UIS','MOH','ECC','UGP','RES','OPK','BCS','RS','TFX','SOL','MCO','CYH']
+tickers = ['TUP','TRUP','KODK','BFAM','BKD','AEG','UIS','MOH','ECC','UGP','RES','OPK','BCS','RS','TFX','SOL','MCO','CYH']
 #We define a list of tickers:
 #tickers = ['TUP']
 
 #And call the method:
-#sentiment_companies = finsent.get_all_stocks(tickers)
-#print (sentiment_companies)
+sentiment_companies = finsent.get_all_stocks(tickers)
+print (sentiment_companies)
 
 
 
