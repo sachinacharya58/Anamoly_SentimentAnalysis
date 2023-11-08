@@ -13,7 +13,7 @@ phases:
       # - zip -r9 ../Anamoly_SentimentAnalysis.zip .
       - zip -r ../Anamoly_SentimentAnalysis.zip .
       - cd ..
-      - zip -g Anamoly_SentimentAnalysis.zip lamda_function.py
+      - zip -g Anamoly_SentimentAnalysis.zip Anamoly_SentimentAnalysis/lamda_function.py
   post_build:
     commands:
       - echo "Updating lambda Fucntion..."
