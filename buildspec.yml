@@ -19,5 +19,5 @@ phases:
   post_build:
     commands:
       - echo "Updating lambda Fucntion..."
-      - aws lambda update-function-code --function-name Anamoly-Sentiment-Analysis --zip-file fileb://Anamoly_SentimentAnalysis/Anamoly_SentimentAnalysis.zip
+      - aws lambda update-function-code --function-name Anamoly-Sentiment-Analysis --zip-file fileb://Anamoly_SentimentAnalysis.zip
       - echo "DONE!!"
